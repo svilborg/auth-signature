@@ -4,7 +4,7 @@
 	syntaxCheck="true" verbose="true">
 
 	<testsuites>
-		<testsuite name="Guzzle Encoding.com Test Suite">
+		<testsuite name="Authentication Signature Test Suite">
 			<directory>./tests</directory>
 		</testsuite>
 	</testsuites>
