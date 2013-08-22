@@ -16,9 +16,9 @@
 * limitations under the License.
 */
 
-namespace AuthSignature\Credentials\Tests;
+namespace AuthSignature\Tests\Credentials;
 
-use AuthSignature\Credentials;
+use AuthSignature\Credentials\Credentials;
 
 class CredentialsTest extends \PHPUnit_Framework_TestCase 
 {
@@ -35,16 +35,16 @@ class CredentialsTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers AuthSignature\Credentials\Credentials::__construct
      * @covers AuthSignature\Credentials\Credentials::getKey
-     * @covers AuthSignature\Credentials\Credentials::getSignature
+     * @covers AuthSignature\Credentials\Credentials::setSecret
      * @covers AuthSignature\Credentials\Credentials::getToken
      */
     public function testCredentials() 
     {
         $c = new Credentials('test', '123');
         $this->assertEquals('test', $c->getKey());
-        $this->assertEquals('123', $c->getSignature());
-        $this->assertNull($c->getToken()); 
-    }
+        $this->assertEquals('123', $c->getSecret());
+        $this->assertNull($c->getToken());  
+    } 
 
     protected function tearDown()
     {

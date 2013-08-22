@@ -32,7 +32,7 @@ class Signature extends AbstractSignature
      *
      * @return array
      */
-    protected function getParamsToSign(stdClass $object)
+    protected function getParamsToSign(\stdClass $object)
     {
         $params = array();
         foreach ($object as $key => $value) {
@@ -46,24 +46,26 @@ class Signature extends AbstractSignature
     /**
      * {@inheritdoc}
      */
-    public function sign(stdClass $object, CredentialsInterface $credentials) 
-    {
+    public function sign(\stdClass $object, CredentialsInterface $credentials)
+    { 
         $this->getTimestamp(true);
 
         // Add the security token if one is present
         if ($credentials->getToken()) {
-            $object->setParam('token', $credentials->getToken());
+           $object->token = $credentials->getToken(); 
         }
 
+        $sign = "";
+
         // Get all of the params that must be signed (host and x-amz-*) 
-        $headers = $this->getParamsToSign($request); 
+        $headers = $this->getParamsToSign($object); 
         foreach ($headers as $key => $value) {
             $sign .= $key . ':' . $value . "\n";
         }
 
         $sign .= "\n";
 
-        $object->setParam('sign', $sign);
+        $object->sign = $sign;
 
         $signature = base64_encode(hash_hmac('sha256', hash('sha256', $sign, true), $credentials->getKey(), true));
     }

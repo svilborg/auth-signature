@@ -21,7 +21,8 @@ namespace AuthSignature\Credentials;
 /**
  * Credentials interface
  */
-interface CredentialsInterface extends \Serializable
+interface CredentialsInterface 
+//extends \Serializable
 {
     /**
      * Returns the authentication key

@@ -18,7 +18,7 @@
 
 namespace AuthSignature\Signature;
 
-use AuthSignature\CredentialsInterface;
+use AuthSignature\Credentials\CredentialsInterface;
 /**
  * Interface
  */
@@ -30,5 +30,5 @@ interface SignatureInterface
      *
      * @param CredentialsInterface $credentials Signing credentials
      */
-    public function sign(CredentialsInterface $credentials);
+    public function sign(\stdClass $object, CredentialsInterface $credentials);
 }

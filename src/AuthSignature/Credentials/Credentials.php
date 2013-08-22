@@ -44,9 +44,9 @@ class Credentials implements CredentialsInterface
      * @param string $secret Authentication Secret
      * @param string $token  Security Token
      */
-    public function __construct($authKey, $secret, $token = null)
+    public function __construct($key, $secret, $token = null)
     {
-        $this->key = trim($authKey);
+        $this->key = trim($key);
         $this->secret = trim($secret); 
         $this->token = $token;
     }
@@ -56,7 +56,7 @@ class Credentials implements CredentialsInterface
      */
     public function getKey()
     {
-        return $this->authKey;
+        return $this->key;
     }
 
     /**
@@ -78,9 +78,9 @@ class Credentials implements CredentialsInterface
     /**
      * {@inheritdoc}
      */
-    public function setKey($authKey)
+    public function setKey($key)
     {
-        $this->authKey = $authKey; 
+        $this->key = $key; 
 
         return $this;
     }
