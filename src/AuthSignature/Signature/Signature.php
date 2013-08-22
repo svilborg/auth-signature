@@ -26,16 +26,16 @@ use AuthSignature\Credentials\CredentialsInterface;
 class Signature extends AbstractSignature
 {
     /**
-     * Get an array of headers to be signed
+     * Get an array of params to be signed
      *
-     * @param array $params Parameters for signing
+     * @param object $params Parameters for signing
      *
      * @return array
      */
-    protected function getParamsToSign(array $params)
+    protected function getParamsToSign(stdClass $object)
     {
         $params = array();
-        foreach ($params as $key => $value) {
+        foreach ($object as $key => $value) {
             $key = strtolower($key);
             $params[$key] = $value; 
         }
@@ -55,7 +55,7 @@ class Signature extends AbstractSignature
             $object->setParam('token', $credentials->getToken());
         }
 
-        // Get all of the headers that must be signed (host and x-amz-*)
+        // Get all of the params that must be signed (host and x-amz-*) 
         $headers = $this->getParamsToSign($request); 
         foreach ($headers as $key => $value) {
             $sign .= $key . ':' . $value . "\n";

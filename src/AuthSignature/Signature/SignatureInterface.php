@@ -28,8 +28,7 @@ interface SignatureInterface
      * Signs the specified request with credentials class
      * request.
      *
-     * @param RequestInterface     $request     Request to add a signature to
      * @param CredentialsInterface $credentials Signing credentials
      */
-    public function sign(RequestInterface $request, CredentialsInterface $credentials);
+    public function sign(CredentialsInterface $credentials);
 }

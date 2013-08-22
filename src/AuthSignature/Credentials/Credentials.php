@@ -19,8 +19,7 @@
 namespace AuthSignature\Credentials;
 
 /**
- * Basic implementation of the AWSCredentials interface that allows callers to
- * pass in the AWS access key and secret access in the constructor.
+ * Generic Credentials class
  */
 class Credentials implements CredentialsInterface 
 {
