@@ -25,18 +25,66 @@ class SignedObjectTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
+     * @covers AuthSignature\Signature\SignedObject::__construct()
+     * @covers AuthSignature\Signature\SignedObject::getSigningKey()
+     * @covers AuthSignature\Signature\SignedObject::getSignature()
+     * @covers AuthSignature\Signature\SignedObject::getContextParams()
+     * @covers AuthSignature\Signature\SignedObject::getCredentials()
      */
-    public function testCreation()
+    public function testCreationEmpty()
     {
         $object = new SignedObject();
 
-        /*
-         * $credentials = new Credentials("test", "123ABC"); $signature = new Signature(); $signature->sign($object, $credentials);
-         */
+        $this->assertNotNull($object);
+        $this->assertNull($object->getSigningKey());
+        $this->assertNull($object->getSignature());
+        $this->assertNull($object->getContextParams());
+        $this->assertNull($object->getCredentials());
+    }
 
-        // var_dump($object);
-        // die;
+    /**
+     * @covers AuthSignature\Signature\SignedObject::__construct()
+     * @covers AuthSignature\Signature\SignedObject::getSigningKey()
+     * @covers AuthSignature\Signature\SignedObject::getSignature()
+     * @covers AuthSignature\Signature\SignedObject::getContextParams()
+     * @covers AuthSignature\Signature\SignedObject::getCredentials()
+     */
+    public function testCreationParams()
+    {
+        $object = new SignedObject();
 
-        // $this->assertEquals($stringToSign, $object->get('string'));
+        $object->setSignature("test");
+        $object->setSigningKey("key");
+
+        $this->assertNotNull($object);
+        $this->assertEquals("test", $object->getSignature());
+        $this->assertEquals("key", $object->getSigningKey());
+        $this->assertEquals(array(
+            "name",
+            "address"
+        ), $object->setContextParams(array(
+            "name",
+            "address"
+        ))
+            ->getContextParams());
+        $this->assertNull($object->getCredentials());
+    }
+
+    /**
+     * @covers AuthSignature\Signature\SignedObject::__construct()
+     * @covers AuthSignature\Signature\SignedObject::setCredentials()
+     * @covers AuthSignature\Signature\SignedObject::getCredentials()
+     */
+    public function testCredentials()
+    {
+        $object = new SignedObject();
+
+        $credentials = new Credentials("testKey", "testSecret");
+
+        $object->setSignature("test");
+        $object->setCredentials($credentials);
+
+        $this->assertEquals($credentials, $object->setCredentials($credentials)
+            ->getCredentials());
     }
 }

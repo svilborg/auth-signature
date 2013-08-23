@@ -28,6 +28,7 @@ class SignatureTest extends \PHPUnit_Framework_TestCase
     public function testSign()
     {
         $object = new \stdClass();
+        $object->name = "John";
 
         $credentials = new Credentials("test", "123ABC");
 

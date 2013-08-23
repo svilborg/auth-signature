@@ -18,9 +18,10 @@
 namespace AuthSignature\Signature;
 
 use AuthSignature\Credentials\CredentialsInterface;
+use AuthSignature\Signature\SignedObject;
 
 /**
- * Implementation of Signature
+ * Generic Implementation of Signature
  */
 class Signature extends AbstractSignature
 {
@@ -52,9 +53,6 @@ class Signature extends AbstractSignature
     }
 
     /**
-     *
-     * @ERROR!!!
-     *
      */
     public function sign(\stdClass $object, CredentialsInterface $credentials)
     {
@@ -68,19 +66,54 @@ class Signature extends AbstractSignature
         $sign = "";
 
         // Get all of the params that must be signed (host and x-amz-*)
-        $params = $this->getParamsToSign($object);
 
-        /*
-         * var_dump( $params);die; foreach ($params as $key => $value) { $sign .= $key . ':' . $value . "\n"; } $sign .= "\n"; $object->sign = $sign; $signature = base64_encode(hash_hmac('sha256', hash('sha256', $sign, true), $credentials->getKey(), true)); $signingKey = $this->buildSigningKey(); $signature = $this->buildSignature();
-         */
+        if (! $this->props) {
+            $params = $this->getParamsToSign($object);
+        }
+
+        $stringToSign = implode("|", $params);
+
+        $signingKey = $this->buildSigningKey($params, $credentials->getSecret());
+        $signature = $this->buildSignature($stringToSign, $signingKey);
+
+        $signedObject = new SignedObject();
+
+        $signedObject->setCredentials($credentials);
+        $signedObject->setContextParams($params);
+        $signedObject->setSignature($signature);
+        $signedObject->setSigningKey($signingKey);
+
+        return $signedObject;
     }
 
-    private function buildSigningKey()
-    {}
+    /**
+     * Build Signing key from params and a secret
+     *
+     * @param string $params
+     * @param string $secret
+     * @return string
+     */
+    private function buildSigningKey($params, $secret = "")
+    {
+        $result = "";
 
-    private function buildSignature()
-    {}
+        foreach ($params as $key => $value) {
+            $result .= "|" . $value;
+        }
 
-    public function getSignature()
-    {}
+        return $result;
+    }
+
+    /**
+     * Gets a Signature of a string using a key
+     *
+     * @param string $stringToSign
+     * @param string $signingKey
+     * @return string
+     */
+    private function buildSignature($stringToSign, $signingKey)
+    {
+        $result = $stringToSign . "|" . $signingKey;
+        return $return;
+    }
 }
