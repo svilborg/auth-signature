@@ -15,15 +15,16 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-
 namespace AuthSignature\Signature;
 
 /**
- * Abstract signature class that can be used when implementing new strategies 
+ * Abstract signature class that can be used when implementing new strategies
  */
 abstract class AbstractSignature implements SignatureInterface
 {
+
     /**
+     *
      * @var int Timestamp
      */
     private $timestamp;
@@ -31,13 +32,14 @@ abstract class AbstractSignature implements SignatureInterface
     /**
      * Provides the timestamp used for the class
      *
-     * @param bool $refresh Set to TRUE to refresh the cached timestamp
+     * @param bool $refresh
+     *            Set to TRUE to refresh the cached timestamp
      *
      * @return int
      */
     protected function getTimestamp($refresh = false)
     {
-        if (!$this->timestamp || $refresh) {
+        if (! $this->timestamp || $refresh) {
             $this->timestamp = time();
         }
 

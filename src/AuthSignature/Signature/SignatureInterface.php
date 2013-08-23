@@ -15,20 +15,22 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-
 namespace AuthSignature\Signature;
 
 use AuthSignature\Credentials\CredentialsInterface;
+
 /**
  * Interface
  */
 interface SignatureInterface
 {
+
     /**
      * Signs the specified request with credentials class
      * request.
      *
-     * @param CredentialsInterface $credentials Signing credentials
+     * @param CredentialsInterface $credentials
+     *            Signing credentials
      */
     public function sign(\stdClass $object, CredentialsInterface $credentials);
 }

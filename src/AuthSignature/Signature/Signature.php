@@ -15,7 +15,6 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-
 namespace AuthSignature\Signature;
 
 use AuthSignature\Credentials\CredentialsInterface;
@@ -25,10 +24,19 @@ use AuthSignature\Credentials\CredentialsInterface;
  */
 class Signature extends AbstractSignature
 {
+
+    private $props = array();
+
+    public function setPropertiesToSign($props = array())
+    {
+        $this->props = $props;
+    }
+
     /**
      * Get an array of params to be signed
      *
-     * @param object $params Parameters for signing
+     * @param object $params
+     *            Parameters for signing
      *
      * @return array
      */
@@ -37,36 +45,42 @@ class Signature extends AbstractSignature
         $params = array();
         foreach ($object as $key => $value) {
             $key = strtolower($key);
-            $params[$key] = $value; 
+            $params[$key] = $value;
         }
 
         return $params;
     }
 
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
     public function sign(\stdClass $object, CredentialsInterface $credentials)
-    { 
+    {
         $this->getTimestamp(true);
 
         // Add the security token if one is present
         if ($credentials->getToken()) {
-           $object->token = $credentials->getToken(); 
+            $object->token = $credentials->getToken();
         }
 
         $sign = "";
 
-        // Get all of the params that must be signed (host and x-amz-*) 
-        $headers = $this->getParamsToSign($object); 
-        foreach ($headers as $key => $value) {
-            $sign .= $key . ':' . $value . "\n";
-        }
+        // Get all of the params that must be signed (host and x-amz-*)
+        $params = $this->getParamsToSign($object);
 
-        $sign .= "\n";
-
-        $object->sign = $sign;
-
-        $signature = base64_encode(hash_hmac('sha256', hash('sha256', $sign, true), $credentials->getKey(), true));
+        /*
+         * var_dump( $params);die; foreach ($params as $key => $value) { $sign .= $key . ':' . $value . "\n"; } $sign .= "\n"; $object->sign = $sign; $signature = base64_encode(hash_hmac('sha256', hash('sha256', $sign, true), $credentials->getKey(), true)); $signingKey = $this->buildSigningKey(); $signature = $this->buildSignature();
+         */
     }
+
+    private function buildSigningKey()
+    {}
+
+    private function buildSignature()
+    {}
+
+    public function getSignature()
+    {}
 }

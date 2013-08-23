@@ -15,44 +15,53 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-
 namespace AuthSignature\Credentials;
 
 /**
  * Generic Credentials class
  */
-class Credentials implements CredentialsInterface 
+class Credentials implements CredentialsInterface
 {
 
     /**
+     *
      * @var string Authentication Key
      */
     protected $key;
+
     /**
+     *
      * @var string Authentication Secret
      */
     protected $secret;
+
     /**
-     * @var string  Security Token
+     *
+     * @var string Security Token
      */
-    protected $token; 
+    protected $token;
 
     /**
      * Constructor of new Credentials Object
      *
-     * @param string $key    Authentication Key
-     * @param string $secret Authentication Secret
-     * @param string $token  Security Token
+     * @param string $key
+     *            Authentication Key
+     * @param string $secret
+     *            Authentication Secret
+     * @param string $token
+     *            Security Token
      */
     public function __construct($key, $secret, $token = null)
     {
         $this->key = trim($key);
-        $this->secret = trim($secret); 
+        $this->secret = trim($secret);
         $this->token = $token;
     }
 
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
     public function getKey()
     {
@@ -60,7 +69,9 @@ class Credentials implements CredentialsInterface
     }
 
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
     public function getSecret()
     {
@@ -68,7 +79,9 @@ class Credentials implements CredentialsInterface
     }
 
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
     public function getToken()
     {
@@ -76,19 +89,23 @@ class Credentials implements CredentialsInterface
     }
 
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
     public function setKey($key)
     {
-        $this->key = $key; 
+        $this->key = $key;
 
         return $this;
     }
 
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    public function setSecret($secret) 
+    public function setSecret($secret)
     {
         $this->secret = $secret;
 
@@ -96,7 +113,9 @@ class Credentials implements CredentialsInterface
     }
 
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
     public function setToken($token)
     {

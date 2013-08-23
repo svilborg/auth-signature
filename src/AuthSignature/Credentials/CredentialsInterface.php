@@ -15,15 +15,14 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-
 namespace AuthSignature\Credentials;
- 
+
 /**
  * Credentials interface
  */
-interface CredentialsInterface 
-//extends \Serializable
+interface CredentialsInterface
 {
+
     /**
      * Returns the authentication key
      *
@@ -36,19 +35,20 @@ interface CredentialsInterface
      *
      * @return string
      */
-    public function getSecret(); 
+    public function getSecret();
 
     /**
-     * Get the security token 
+     * Get the security token
      *
-     * @return string|null
+     * @return string null
      */
-    public function getToken(); 
+    public function getToken();
 
     /**
      * Set the authentication key
      *
-     * @param string $key Authentication key
+     * @param string $key
+     *            Authentication key
      *
      * @return CredentialsInterface
      */
@@ -57,16 +57,18 @@ interface CredentialsInterface
     /**
      * Set the authentication secret
      *
-     * @param string $secret Authentication secret
+     * @param string $secret
+     *            Authentication secret
      *
-     * @return CredentialsInterface 
+     * @return CredentialsInterface
      */
     public function setSecret($secret);
 
     /**
      * Set the security token
      *
-     * @param string $token Security token 
+     * @param string $token
+     *            Security token
      *
      * @return CredentialsInterface
      */

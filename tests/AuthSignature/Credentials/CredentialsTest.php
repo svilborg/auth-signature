@@ -15,13 +15,13 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-
 namespace AuthSignature\Tests\Credentials;
 
 use AuthSignature\Credentials\Credentials;
 
-class CredentialsTest extends \PHPUnit_Framework_TestCase 
+class CredentialsTest extends \PHPUnit_Framework_TestCase
 {
+
     public function setUp()
     {
         parent::setUp();
@@ -38,13 +38,13 @@ class CredentialsTest extends \PHPUnit_Framework_TestCase
      * @covers AuthSignature\Credentials\Credentials::setSecret
      * @covers AuthSignature\Credentials\Credentials::getToken
      */
-    public function testCredentials() 
+    public function testCredentials()
     {
         $c = new Credentials('test', '123');
         $this->assertEquals('test', $c->getKey());
         $this->assertEquals('123', $c->getSecret());
-        $this->assertNull($c->getToken());  
-    } 
+        $this->assertNull($c->getToken());
+    }
 
     protected function tearDown()
     {
