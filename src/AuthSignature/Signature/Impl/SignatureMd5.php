@@ -15,15 +15,16 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-namespace AuthSignature\Signature;
+namespace AuthSignature\Signature\Impl;
 
 use AuthSignature\Credentials\CredentialsInterface;
+use AuthSignature\Signature\AbstractSignature;
 use AuthSignature\Signature\SignedObject;
 
 /**
  * Generic Implementation of Signature
  */
-class Signature extends AbstractSignature
+class SignatureMd5 extends AbstractSignature
 {
 
     private $props = array();
@@ -106,7 +107,7 @@ class Signature extends AbstractSignature
         $result = "";
 
         foreach ($params as $key => $value) {
-            $result .= "|" . $value;
+            $result .= md5($result . $value);
         }
 
         return $result;
@@ -121,7 +122,7 @@ class Signature extends AbstractSignature
      */
     private function buildSignature($stringToSign, $signingKey)
     {
-        $result = $stringToSign . ":" . $signingKey;
+        $result = md5($stringToSign . $signingKey);
         return $result;
     }
 }

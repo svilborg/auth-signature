@@ -15,12 +15,13 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-namespace AuthSignature\Tests\Signature;
+namespace AuthSignature\Tests\Signature\Impl;
 
 use AuthSignature\Signature\Signature;
+use AuthSignature\Signature\Impl\SignatureMd5;
 use AuthSignature\Credentials\Credentials;
 
-class SignatureTest extends \PHPUnit_Framework_TestCase
+class SignatureMd5Test extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -32,7 +33,7 @@ class SignatureTest extends \PHPUnit_Framework_TestCase
 
         $credentials = new Credentials("test", "123ABC");
 
-        $signature = new Signature();
+        $signature = new SignatureMd5();
 
         $result = $signature->sign($object, $credentials);
 
