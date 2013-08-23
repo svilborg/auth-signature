@@ -53,6 +53,7 @@ class Signature extends AbstractSignature
     }
 
     /**
+     *
      * @see \AuthSignature\Signature\SignatureInterface::sign()
      *
      * @return SignedObject
@@ -117,6 +118,6 @@ class Signature extends AbstractSignature
     private function buildSignature($stringToSign, $signingKey)
     {
         $result = $stringToSign . "|" . $signingKey;
-        return $return;
+        return $result;
     }
 }
