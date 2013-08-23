@@ -53,6 +53,9 @@ class Signature extends AbstractSignature
     }
 
     /**
+     * @see \AuthSignature\Signature\SignatureInterface::sign()
+     *
+     * @return SignedObject
      */
     public function sign(\stdClass $object, CredentialsInterface $credentials)
     {
