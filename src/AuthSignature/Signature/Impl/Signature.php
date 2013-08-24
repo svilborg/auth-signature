@@ -69,12 +69,7 @@ class Signature extends AbstractSignature
         $signingKey = $this->buildSigningKey($params, $credentials->getSecret());
         $signature = $this->buildSignature($stringToSign, $signingKey);
 
-        $signedObject = new SignedObject();
-
-        $signedObject->setCredentials($credentials);
-        $signedObject->setContextParams($params);
-        $signedObject->setSignature($signature);
-        $signedObject->setSigningKey($signingKey);
+        $signedObject = parent::getSignedObjectFactory($credentials, $signingKey, $signature, $params);
 
         return $signedObject;
     }

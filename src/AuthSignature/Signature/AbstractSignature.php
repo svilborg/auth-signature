@@ -48,9 +48,24 @@ abstract class AbstractSignature implements SignatureInterface
      * Gets the properties that will be signed
      * @return array List of props
      */
-    public function getPropertiesToSign()
+    protected function getPropertiesToSign()
     {
         $this->props = $props;
+    }
+    /**
+     * Creates an Instace of SignedObject
+     * @return SignedObject Instance 
+     */
+    protected function getSignedObjectFactory($credentials, $signingKey, $signature, $params)
+    {
+        $signedObject = new SignedObject();
+
+        $signedObject->setCredentials($credentials);
+        $signedObject->setSigningKey($signingKey);
+        $signedObject->setSignature($signature);
+        $signedObject->setContextParams($params);
+
+        return $signedObject;
     }
 
     /**
