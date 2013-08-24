@@ -27,13 +27,6 @@ use AuthSignature\Signature\SignedObject;
 class Signature extends AbstractSignature
 {
 
-    private $props = array();
-
-    public function setPropertiesToSign($props = array())
-    {
-        $this->props = $props;
-    }
-
     /**
      * Get an array of params to be signed
      *
@@ -65,7 +58,9 @@ class Signature extends AbstractSignature
             $object->token = $credentials->getToken();
         }
 
-        if (! $this->props) {
+        $props = $this->setPropertiesToSign();
+
+        if (! $props) {
             $params = $this->getParamsToSign($object);
         }
 

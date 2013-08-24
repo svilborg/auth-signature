@@ -25,9 +25,33 @@ abstract class AbstractSignature implements SignatureInterface
 
     /**
      *
+     * @var array List of props
+     */
+    private $props = array();
+
+    /**
+     *
      * @var int Timestamp
      */
     private $timestamp;
+
+    
+    /**  
+     * Sets the properties that will be signed
+     */
+    public function setPropertiesToSign($props = array())
+    {
+        $this->props = $props;
+    }
+
+    /**
+     * Gets the properties that will be signed
+     * @return array List of props
+     */
+    public function getPropertiesToSign()
+    {
+        $this->props = $props;
+    }
 
     /**
      * Provides the timestamp used for the class

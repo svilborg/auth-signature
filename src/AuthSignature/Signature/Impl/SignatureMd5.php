@@ -27,13 +27,6 @@ use AuthSignature\Signature\SignedObject;
 class SignatureMd5 extends AbstractSignature
 {
 
-    private $props = array();
-
-    public function setPropertiesToSign($props = array())
-    {
-        $this->props = $props;
-    }
-
     /**
      * Get an array of params to be signed
      *
@@ -65,7 +58,9 @@ class SignatureMd5 extends AbstractSignature
             $object->token = $credentials->getToken();
         }
 
-        if (! $this->props) {
+        $props = $this->setPropertiesToSign();
+
+        if (! $props) {
             $params = $this->getParamsToSign($object);
         }
 
