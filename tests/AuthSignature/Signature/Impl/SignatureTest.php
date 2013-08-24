@@ -17,10 +17,10 @@
 */
 namespace AuthSignature\Tests\Signature\Impl;
 
-use AuthSignature\Signature\Impl\SignatureMd5;
+use AuthSignature\Signature\Impl\Signature; 
 use AuthSignature\Credentials\Credentials;
 
-class SignatureMd5Test extends \PHPUnit_Framework_TestCase
+class SignatureTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -32,7 +32,7 @@ class SignatureMd5Test extends \PHPUnit_Framework_TestCase
 
         $credentials = new Credentials("test", "123ABC");
 
-        $signature = new SignatureMd5();
+        $signature = new Signature();
 
         $result = $signature->sign($object, $credentials);
 
