@@ -59,9 +59,8 @@ class Credentials implements CredentialsInterface
     }
 
     /**
-     *
-     * @ERROR!!!
-     *
+     * Get Key
+     * @see \AuthSignature\Credentials\CredentialsInterface::getKey()
      */
     public function getKey()
     {
@@ -69,9 +68,8 @@ class Credentials implements CredentialsInterface
     }
 
     /**
-     *
-     * @ERROR!!!
-     *
+     * Get Secret
+     * @see \AuthSignature\Credentials\CredentialsInterface::getSecret()
      */
     public function getSecret()
     {
@@ -79,9 +77,9 @@ class Credentials implements CredentialsInterface
     }
 
     /**
+     * Get Token
      *
-     * @ERROR!!!
-     *
+     * @see \AuthSignature\Credentials\CredentialsInterface::getToken()
      */
     public function getToken()
     {
@@ -89,9 +87,8 @@ class Credentials implements CredentialsInterface
     }
 
     /**
-     *
-     * @ERROR!!!
-     *
+     * Set Security Key
+     * @see \AuthSignature\Credentials\CredentialsInterface::setKey()
      */
     public function setKey($key)
     {
@@ -101,9 +98,8 @@ class Credentials implements CredentialsInterface
     }
 
     /**
-     *
-     * @ERROR!!!
-     *
+     * Set Secret
+     * @see \AuthSignature\Credentials\CredentialsInterface::setSecret()
      */
     public function setSecret($secret)
     {
@@ -113,9 +109,7 @@ class Credentials implements CredentialsInterface
     }
 
     /**
-     *
-     * @ERROR!!!
-     *
+     * Set Token
      */
     public function setToken($token)
     {
