@@ -38,13 +38,6 @@ interface CredentialsInterface
     public function getSecret();
 
     /**
-     * Get the security token
-     *
-     * @return string null
-     */
-    public function getToken();
-
-    /**
      * Set the authentication key
      *
      * @param string $key
@@ -63,14 +56,4 @@ interface CredentialsInterface
      * @return CredentialsInterface
      */
     public function setSecret($secret);
-
-    /**
-     * Set the security token
-     *
-     * @param string $token
-     *            Security token
-     *
-     * @return CredentialsInterface
-     */
-    public function setToken($token);
 }

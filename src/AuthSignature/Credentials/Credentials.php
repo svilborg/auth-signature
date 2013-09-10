@@ -36,12 +36,6 @@ class Credentials implements CredentialsInterface
     protected $secret;
 
     /**
-     *
-     * @var string Security Token
-     */
-    protected $token;
-
-    /**
      * Constructor of new Credentials Object
      *
      * @param string $key
@@ -51,11 +45,10 @@ class Credentials implements CredentialsInterface
      * @param string $token
      *            Security Token
      */
-    public function __construct($key, $secret, $token = null)
+    public function __construct($key, $secret)
     {
         $this->key = trim($key);
         $this->secret = trim($secret);
-        $this->token = $token;
     }
 
     /**
@@ -77,16 +70,6 @@ class Credentials implements CredentialsInterface
     }
 
     /**
-     * Get Token
-     *
-     * @see \AuthSignature\Credentials\CredentialsInterface::getToken()
-     */
-    public function getToken()
-    {
-        return $this->token;
-    }
-
-    /**
      * Set Security Key
      * @see \AuthSignature\Credentials\CredentialsInterface::setKey()
      */
@@ -104,16 +87,6 @@ class Credentials implements CredentialsInterface
     public function setSecret($secret)
     {
         $this->secret = $secret;
-
-        return $this;
-    }
-
-    /**
-     * Set Token
-     */
-    public function setToken($token)
-    {
-        $this->token = $token;
 
         return $this;
     }
