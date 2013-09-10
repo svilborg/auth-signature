@@ -29,25 +29,6 @@ class Signature extends AbstractSignature
 {
 
     /**
-     * Get an array of params to be signed
-     *
-     * @param object $params
-     *            Parameters for signing
-     *
-     * @return array
-     */
-    protected function getParamsToSign(SigningObject $object)
-    {
-        $params = array();
-        foreach ($object as $key => $value) {
-            $key = strtolower($key);
-            $params[$key] = $value;
-        }
-
-        return $params;
-    }
-
-    /**
      *
      * @see \AuthSignature\Signature\SignatureInterface::sign()
      *
@@ -55,11 +36,7 @@ class Signature extends AbstractSignature
      */
     public function sign(SigningObject $object, CredentialsInterface $credentials)
     {
-        $props = $this->setPropertiesToSign();
-
-        if (! $props) {
-            $params = $this->getParamsToSign($object);
-        }
+        $params = $this->getParamsToSign($object);
 
         $stringToSign = $this->buildSigningString($params);
 

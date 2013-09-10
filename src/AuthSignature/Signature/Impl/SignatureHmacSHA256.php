@@ -23,9 +23,9 @@ use AuthSignature\Signature\SignedObject;
 use AuthSignature\Signature\SigningObject;
 
 /**
- * Simple MD5 Implementation of Signature
+ * HmacSHA256 Implementation of Signature
  */
-class SignatureMd5 extends AbstractSignature
+class SignatureHmacSHA256 extends AbstractSignature
 {
 
     /**
@@ -68,10 +68,10 @@ class SignatureMd5 extends AbstractSignature
      */
     private function buildSigningKey($params, $secret = "")
     {
-        $result = "";
+        $result = hash_hmac('sha256', $secret);
 
         foreach ($params as $key => $value) {
-            $result .= md5($value);
+            $result .= hash_hmac('sha256', $value);
         }
 
         return $result;
@@ -86,7 +86,7 @@ class SignatureMd5 extends AbstractSignature
      */
     private function buildSignature($stringToSign, $signingKey)
     {
-        $result = md5($stringToSign . $signingKey);
+        $result =  hash_hmac('sha256', $stringToSign, $signingKey);
         return $result;
     }
 }

@@ -48,6 +48,25 @@ abstract class AbstractSignature implements SignatureInterface
     }
 
     /**
+     * Get an array of params to be signed
+     *
+     * @param object $params
+     *            Parameters for signing
+     *
+     * @return array
+     */
+    protected function getParamsToSign(SigningObject $object)
+    {
+        $params = array();
+        foreach ($object as $key => $value) {
+            $key = strtolower($key);
+            $params[$key] = $value;
+        }
+
+        return $params;
+    }
+
+    /**
      * Creates an Instace of SignedObject
      *
      * @return SignedObject Instance
