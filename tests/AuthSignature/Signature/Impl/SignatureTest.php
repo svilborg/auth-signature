@@ -39,5 +39,11 @@ class SignatureTest extends \PHPUnit_Framework_TestCase
         $result = $signature->sign($object, $credentials);
 
         $this->assertNotNull($result);
+        $this->assertNotNull($result->getSignature());
+        $this->assertEquals($credentials, $result->getCredentials());
+        $this->assertEquals(array(
+            "name" => "John",
+            "name2" => "Smith"
+        ), $result->getContextParams());
     }
 }

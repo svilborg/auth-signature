@@ -17,11 +17,11 @@
 */
 namespace AuthSignature\Tests\Signature\Impl;
 
-use AuthSignature\Signature\Impl\SignatureMd5;
+use AuthSignature\Signature\Impl\SignatureHmacSHA256;
 use AuthSignature\Credentials\Credentials;
 use AuthSignature\Signature\SigningObject;
 
-class SignatureMd5Test extends \PHPUnit_Framework_TestCase
+class SignatureHmacSHA256Test extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -33,7 +33,7 @@ class SignatureMd5Test extends \PHPUnit_Framework_TestCase
 
         $credentials = new Credentials("test", "123ABC");
 
-        $signature = new SignatureMd5();
+        $signature = new SignatureHmacSHA256();
 
         $result = $signature->sign($object, $credentials);
 
@@ -43,33 +43,6 @@ class SignatureMd5Test extends \PHPUnit_Framework_TestCase
         $this->assertEquals(array(
             "name" => "John"
         ), $result->getContextParams());
-    }
-
-    /**
-     */
-    public function testSignEqual()
-    {
-        $object1 = new SigningObject();
-        $object1->name = "John";
-
-        $credentials1 = new Credentials("test", "123ABC");
-
-        $signature1 = new SignatureMd5();
-
-        $result1 = $signature1->sign($object1, $credentials1);
-
-        $object2 = new SigningObject();
-        $object2->name = "John";
-
-        $credentials2 = new Credentials("test", "123ABC");
-
-        $signature2 = new SignatureMd5();
-
-        $result2 = $signature1->sign($object2, $credentials2);
-
-        $this->assertNotNull($result1);
-        $this->assertNotNull($result2);
-        $this->assertEquals($result1->getSignature(), $result2->getSignature());
     }
 }
 

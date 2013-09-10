@@ -68,10 +68,10 @@ class SignatureHmacSHA256 extends AbstractSignature
      */
     private function buildSigningKey($params, $secret = "")
     {
-        $result = hash_hmac('sha256', $secret);
+        $result = hash('sha256', $secret);
 
         foreach ($params as $key => $value) {
-            $result .= hash_hmac('sha256', $value);
+            $result .= hash('sha256', $value);
         }
 
         return $result;
@@ -86,7 +86,7 @@ class SignatureHmacSHA256 extends AbstractSignature
      */
     private function buildSignature($stringToSign, $signingKey)
     {
-        $result =  hash_hmac('sha256', $stringToSign, $signingKey);
+        $result = hash_hmac('sha256', $stringToSign, $signingKey);
         return $result;
     }
 }
