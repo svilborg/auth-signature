@@ -20,6 +20,7 @@ namespace AuthSignature\Signature\Impl;
 use AuthSignature\Credentials\CredentialsInterface;
 use AuthSignature\Signature\AbstractSignature;
 use AuthSignature\Signature\SignedObject;
+use AuthSignature\Signature\SigningObject;
 
 /**
  * Generic Implementation of Signature
@@ -35,7 +36,7 @@ class Signature extends AbstractSignature
      *
      * @return array
      */
-    protected function getParamsToSign(\stdClass $object)
+    protected function getParamsToSign(SigningObject $object)
     {
         $params = array();
         foreach ($object as $key => $value) {
@@ -52,12 +53,8 @@ class Signature extends AbstractSignature
      *
      * @return SignedObject
      */
-    public function sign(\stdClass $object, CredentialsInterface $credentials)
+    public function sign(SigningObject $object, CredentialsInterface $credentials)
     {
-        if ($credentials->getToken()) {
-            $object->token = $credentials->getToken();
-        }
-
         $props = $this->setPropertiesToSign();
 
         if (! $props) {
@@ -97,7 +94,7 @@ class Signature extends AbstractSignature
         $result = "";
 
         foreach ($params as $key => $value) {
-            $result .= "|" . $value;
+            $result .= "_" . $value;
         }
 
         return $result;

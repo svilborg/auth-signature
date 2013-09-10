@@ -15,28 +15,43 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-namespace AuthSignature\Tests\Signature\Impl;
+namespace AuthSignature\Signature;
 
-use AuthSignature\Signature\Impl\SignatureMd5;
-use AuthSignature\Credentials\Credentials;
-use AuthSignature\Signature\SigningObject;
+use AuthSignature\Credentials\CredentialsInterface;
 
-class SignatureMd5Test extends \PHPUnit_Framework_TestCase
+/**
+ * Signing Object
+ */
+class SigningObject
 {
 
+    private $contextParams;
+
     /**
+     * Constructor
      */
-    public function testSign()
+    public function __construct()
+    {}
+
+    /**
+     * Gets Context Params
+     *
+     * @return array
+     */
+    public function getContextParams()
     {
-        $object = new SigningObject();
-        $object->name = "John";
+        return $this->contextParams;
+    }
 
-        $credentials = new Credentials("test", "123ABC");
+    /**
+     * Sets Context Params
+     *
+     * @return self
+     */
+    public function setContextParams($contextParams)
+    {
+        $this->contextParams = $contextParams;
 
-        $signature = new SignatureMd5();
-
-        $result = $signature->sign($object, $credentials);
-
-        $this->assertNotNull($result);
+        return $this;
     }
 }

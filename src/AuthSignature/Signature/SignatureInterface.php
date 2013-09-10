@@ -32,5 +32,5 @@ interface SignatureInterface
      * @param CredentialsInterface $credentials
      *            Signing credentials
      */
-    public function sign(\stdClass $object, CredentialsInterface $credentials);
+    public function sign(SigningObject $object, CredentialsInterface $credentials);
 }

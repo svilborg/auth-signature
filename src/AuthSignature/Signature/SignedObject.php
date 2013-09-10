@@ -20,7 +20,7 @@ namespace AuthSignature\Signature;
 use AuthSignature\Credentials\CredentialsInterface;
 
 /**
- * Implementation of Signature
+ * Signed Object
  */
 class SignedObject
 {

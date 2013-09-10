@@ -17,8 +17,9 @@
 */
 namespace AuthSignature\Tests\Signature\Impl;
 
-use AuthSignature\Signature\Impl\Signature; 
+use AuthSignature\Signature\Impl\Signature;
 use AuthSignature\Credentials\Credentials;
+use AuthSignature\Signature\SigningObject;
 
 class SignatureTest extends \PHPUnit_Framework_TestCase
 {
@@ -27,8 +28,9 @@ class SignatureTest extends \PHPUnit_Framework_TestCase
      */
     public function testSign()
     {
-        $object = new \stdClass();
+        $object = new SigningObject();
         $object->name = "John";
+        $object->name2 = "Smith";
 
         $credentials = new Credentials("test", "123ABC");
 

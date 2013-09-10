@@ -30,13 +30,6 @@ abstract class AbstractSignature implements SignatureInterface
     private $props = array();
 
     /**
-     *
-     * @var int Timestamp
-     */
-    private $timestamp;
-
-    
-    /**  
      * Sets the properties that will be signed
      */
     public function setPropertiesToSign($props = array())
@@ -46,15 +39,18 @@ abstract class AbstractSignature implements SignatureInterface
 
     /**
      * Gets the properties that will be signed
+     *
      * @return array List of props
      */
     protected function getPropertiesToSign()
     {
         $this->props = $props;
     }
+
     /**
      * Creates an Instace of SignedObject
-     * @return SignedObject Instance 
+     *
+     * @return SignedObject Instance
      */
     protected function getSignedObjectFactory($credentials, $signingKey, $signature, $params)
     {
@@ -66,22 +62,5 @@ abstract class AbstractSignature implements SignatureInterface
         $signedObject->setContextParams($params);
 
         return $signedObject;
-    }
-
-    /**
-     * Provides the timestamp used for the class
-     *
-     * @param bool $refresh
-     *            Set to TRUE to refresh the cached timestamp
-     *
-     * @return int
-     */
-    protected function getTimestamp($refresh = false)
-    {
-        if (! $this->timestamp || $refresh) {
-            $this->timestamp = time();
-        }
-
-        return $this->timestamp;
     }
 }
