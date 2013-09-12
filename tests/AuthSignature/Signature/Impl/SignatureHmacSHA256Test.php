@@ -51,7 +51,7 @@ class SignatureHmacSHA256Test extends \PHPUnit_Framework_TestCase
     {
         $object = new SigningObject();
         $object->host = "digital_assets.comix";
-        $object->user_agent = "test";
+        $object->user_agent = "PHP RestClient/0.1.1";
 
         $credentials = new Credentials("X123456789", "Y123456789");
 
@@ -60,7 +60,24 @@ class SignatureHmacSHA256Test extends \PHPUnit_Framework_TestCase
         $result = $signature->sign($object, $credentials);
 
         $this->assertNotNull($result);
-        $this->assertEquals("142c5f4f1b9e79a2b58da6fc855b777d5f621a866ae8491c059d5f6889214d18", $result->getSignature());
+        $this->assertEquals("5e60a39fbaf97cebe07385b4d66d4078d3bbdaf991db3effe2570c5150f2c957", $result->getSignature());
+        $this->assertEquals($credentials, $result->getCredentials());
+    }
+
+    /**
+     */
+    public function testSignEmpty()
+    {
+        $object = new SigningObject();
+
+        $credentials = new Credentials("X123456789", "Y123456789");
+
+        $signature = new SignatureHmacSHA256();
+
+        $result = $signature->sign($object, $credentials);
+
+        $this->assertNotNull($result);
+        $this->assertEquals("94e8228d50bf8d7580500ea06d6a69172cffe4591067ccab673301da13bc98c6", $result->getSignature());
         $this->assertEquals($credentials, $result->getCredentials());
     }
 
