@@ -47,6 +47,25 @@ class SignatureHmacSHA256Test extends \PHPUnit_Framework_TestCase
 
     /**
      */
+    public function testSign2()
+    {
+        $object = new SigningObject();
+        $object->host = "digital_assets.comix";
+        $object->user_agent = "test";
+
+        $credentials = new Credentials("X123456789", "Y123456789");
+
+        $signature = new SignatureHmacSHA256();
+
+        $result = $signature->sign($object, $credentials);
+
+        $this->assertNotNull($result);
+        $this->assertEquals("142c5f4f1b9e79a2b58da6fc855b777d5f621a866ae8491c059d5f6889214d18", $result->getSignature());
+        $this->assertEquals($credentials, $result->getCredentials());
+    }
+
+    /**
+     */
     public function testSignEqual()
     {
         $object1 = new SigningObject();
